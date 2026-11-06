@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: medical-system
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/medical_system?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    # 数据库密码从环境变量读取，避免泄露到代码仓库
+    password: ${MYSQL_PASSWORD}
+
+mybatis:
+  # MyBatis 映射文件位置
+  mapper-locations: classpath:mapper/*.xml
+  # 实体类别名包
+  type-aliases-package: com.medical.entity
+  configuration:
+    # 数据库下划线字段自动映射到驼峰属性
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com.medical: debug
